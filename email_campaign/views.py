@@ -9,11 +9,13 @@ from .serializers import SubscriberSerializer, CampaignSerializer
 class SubscriberViewSet(viewsets.ModelViewSet):   
         queryset = Subscriber.objects.all()
         serializer_class = SubscriberSerializer
-        
-        @action(details=True, method=['post'])
+
+        @action(detail=True, methods=['put'])
         def unsubscribe(self, request, pk=None):
                 try:
                     subscriber = self.get_object()
+                    if subscriber.is_active==False:
+                          return Response({'message':'user already unsubscribed!'}, status = status.HTTP_400_BAD_REQUEST)
                     subscriber.is_active = False
                     subscriber.save()
                     return Response({'message':'user unsubscribed succesfully!'}, status = status.HTTP_200_OK)
@@ -25,8 +27,3 @@ class SubscriberViewSet(viewsets.ModelViewSet):
 class CampaignViewSet(viewsets.ModelViewSet):
         queryset = Campaign.objects.all()
         serializer_class = CampaignSerializer
-
-        @action(details=False, method=['post'])
-        def send_daily_campagin(self,request):
-              pass
-
