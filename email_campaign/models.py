@@ -9,6 +9,9 @@ class Subscriber(models.Model):
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'{self.first_name}'
+
 
 #Campaign Model
 class Campaign(models.Model):
@@ -18,3 +21,6 @@ class Campaign(models.Model):
     html_content = models.TextField()
     plain_text_content = models.TextField()
     published_date = models.DateField(default=datetime.date.today)
+
+    def __str__(self):
+        return f'{self.subject}'

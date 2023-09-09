@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from email_campaign.models import Subscriber, Campaign
 from django.core.mail import send_mail
 from datetime import date
-from django.conf import settings
 
 class Command(BaseCommand):
     help = 'create daily campaigns to send subscribers.'
