@@ -12,7 +12,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'run-campaigns-daily': {
         'task': 'email_campaign.tasks.run_campaigns_daily',
-        'schedule': crontab(minute="*"),  # Schedule to run daily at midnight
+        'schedule': crontab(hour=0, minute=0),  #Schedule to run daily at midnight
     },
 }
 

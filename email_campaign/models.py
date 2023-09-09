@@ -6,7 +6,7 @@ import datetime
 #Subscribers Model
 class Subscriber(models.Model):
     first_name = models.CharField(max_length=25)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(max_length=75, unique=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
