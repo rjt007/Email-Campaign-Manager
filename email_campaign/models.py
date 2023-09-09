@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 
@@ -16,4 +17,4 @@ class Campaign(models.Model):
     article_url = models.URLField()
     html_content = models.TextField()
     plain_text_content = models.TextField()
-    published_date = models.DateTimeField()
+    published_date = models.DateField(default=datetime.date.today)
